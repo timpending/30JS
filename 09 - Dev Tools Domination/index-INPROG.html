@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Console Tricks!</title>
+</head>
+<body>
+
+  <p onClick="makeGreen()">×BREAK×DOWN×</p>
+
+  <script>
+    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+    function makeGreen() {
+      const p = document.querySelector('p');
+      p.style.color = '#BADA55';
+      p.style.fontSize = '50px';
+    }
+    // Regular
+    console.log('whaddup');
+    
+    // Interpolated
+    console.log("hello I'm a %s string", 'mother f*ing');
+    console.log(`backticks now have solved this`);
+    
+    // Styled
+    //console.log("%c I am some error text", "font-size: 30px; color: red; ");
+
+    // warning!
+    console.warn('WARNING');
+    
+    // Error :|
+    console.error('STOP ERROR!');
+
+    // Info
+    console.info('Displays an I for info');
+    
+    // Testing
+    const p = document.querySelector('p')
+    console.assert(p.classList.contains('bool'), 'that is wrong, no bool class');
+    // assert only shows up only as incorrect
+
+    // clearing
+    console.clear();
+
+    // Viewing DOM Elements
+    console.dir(p);
+    // shows all the acccessible properties and methods are that on an element
+    // vs. console.log which shows actually element itself
+
+    // Grouping together
+    dogs.forEach(dog => {
+        //console.group(`${dog.name}`);
+        console.groupCollapsed(`${dog.name}`);
+            console.log(`${dog.name} is ${dog.age} years old.`)
+            console.log(`${dog.name} is ${dog.age * 7} dog years old`);
+        console.groupEnd(`${dog.name}`);
+    });
+
+    // counting
+    console.count('test');
+    console.count('test');
+    console.count('test');
+    console.count('nope');
+    console.count('test');
+    console.count('nope');
+
+    // timing
+    console.time('clock');
+    fetch('https://api.github.com/users/timpending')
+        .then(data => data.json())
+        .then(data => {
+            console.timeEnd('clock');
+            console.log(data);
+        });
+
+        // performance.now() also serves similar purpose 
+
+        console.table(dogs);
+  </script>
+</body>
+</html>
