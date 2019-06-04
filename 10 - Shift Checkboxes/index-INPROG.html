@@ -96,6 +96,37 @@
   </div>
 
 <script>
+    const checkboxes = document.querySelectorAll('input');
+    const checkedCheckboxes =  document.querySelectorAll('input');
+    let lastChecked;
+    
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('click', checkTheBoxes)
+    });
+    
+
+    function checkTheBoxes(e) {
+        let inBetween = false;
+        if (e.shiftKey && this.checked) {
+            checkboxes.forEach(checkbox => {
+                if (checkbox === this || checkbox === lastChecked) {
+                    inBetween = !inBetween;
+                }
+                // if (checkbox.checked) {
+                //     inBetween = !inBetween;
+                // }
+                if (inBetween) {
+                    checkbox.checked = true;
+                }
+            })
+        }
+        lastChecked = this;
+    }
+
+    // issues with pre-selecting,
+    // continue to hold down shidft
+    // unselecting, but the basic fn is convered
+
 </script>
 </body>
 </html>
